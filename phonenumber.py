@@ -8,8 +8,6 @@ import urllib.parse
 
 # Configure Streamlit page
 st.set_page_config(
-    page_title="Website Phone Number Extractor",
-    page_icon="📞",
     layout="wide"
 )
 
@@ -69,7 +67,7 @@ def process_file(uploaded_file):
         return None, f"❌ Error reading file: {str(e)}"
 
 def main():
-    st.title("📞 Website Phone Number Extractor")
+    # st.title("📞 Website Phone Number Extractor")
     st.markdown("""
     Upload a **CSV/Excel** file containing website URLs.  
     The tool will extract phone numbers and add them in a new column.  
@@ -89,7 +87,7 @@ def main():
             st.error(error)
             return
         
-        st.subheader("📂 File Preview")
+        st.markdown("<p style='font-weight:600;font-size:xx-large;'>📂 File Preview</p>",unsafe_allow_html=True)
         st.dataframe(df.head())
         
         # Let user select URL column
@@ -167,7 +165,7 @@ def main():
                 )
                 
                 # Show stats
-                st.subheader("📊 Extraction Stats")
+                st.markdown("<p style='font-weight:600;font-size:xx-large;'>📊 Extraction Stats</p>",unsafe_allow_html=True)
                 stats = pd.DataFrame(results)['status'].value_counts().reset_index()
                 stats.columns = ['Status', 'Count']
                 st.write(stats)
